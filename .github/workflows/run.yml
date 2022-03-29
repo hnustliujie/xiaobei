@@ -5,7 +5,7 @@ on:
     branches: 
       - main
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 23 * * *'
       #修改时间请先了解cron，该时间为国际标准时间，2表示国际时间2点即北京时间10点
 
 jobs:
