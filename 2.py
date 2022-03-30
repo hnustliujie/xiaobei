@@ -65,7 +65,7 @@ def get_token(_login_session):
         token=_login_session['token']
         headers["Authorization"] ='Bearer ' +token
     except Exception as e:
-        notify('账号或者密码错误,请仔细阅读配置步骤')
+        print('账号或者密码错误,请仔细阅读配置步骤')
 
 def post_health():
     _post_health=session.post(health_url,json = temperature,headers = headers,verify=False)
@@ -73,7 +73,7 @@ def post_health():
 
 if __name__ == "__main__":
     if not username or not password:
-        notify("用户名或账号为空，请仔细阅读配置步骤！")
+        print("用户名或账号为空，请仔细阅读配置步骤！")
         sys.exit()
     try:
         _captchaImage_session=captchaImage_session(captchaImage_url)
@@ -81,9 +81,9 @@ if __name__ == "__main__":
         get_token(_login_session)   
         response=post_health()
         if response['code'] == 200:
-            notify("打卡成功")
+            print("打卡成功")
         else:
-            notify("打卡失败\npost请求错误\n请手动打卡", response.text)
+            print("打卡失败\npost请求错误\n请手动打卡", response.text)
     except Exception as e:
-        notify("打卡失败,请手动打卡", str(e))
+        print("打卡失败,请手动打卡", str(e))
 
