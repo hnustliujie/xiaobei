@@ -71,20 +71,6 @@ def post_health():
     _post_health=session.post(health_url,json = temperature,headers = headers,verify=False)
     return json.loads(_post_health.text)
 
- 
-def notify(_title, _message=None):
-    if not _message:
-        _message = _title
-
-    print(_title)
-
-    _response = requests.post(f'https://qmsg.zendee.cn/send/{SCKEY}', {"msg": _title},verify=False)
-
-    if _response.status_code == 200:
-        print(f"发送qq通知成功")
-    else:
-        print(f"发送qq通知失败：{_response.status_code}")
-
 if __name__ == "__main__":
     if not username or not password:
         notify("用户名或账号为空，请仔细阅读配置步骤！")
